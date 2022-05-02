@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Open+Sans+Condensed:wght@300&family=Permanent+Marker&family=VT323&display=swap');
+
+
+/* pseudo-classe permet de cibler la racine de l'arbre représentant le document (: = html)*/
+:root {
+  
+   --pixel-size: 12; /* variable pour zoomer*/
+}
+header {
+    position: fixed;
+    list-style-type: none;
+    width: 100%;
+    z-index: 1;
+}
+
+body {
+    width: 100%;
+    margin-bottom: 800px;
+    background-color: black;
+}
+footer {
+    position: fixed;
+    background-color: pink;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: black;
+    font-family: 'Share Tech', serif;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px 0px;
+    z-index: 3;
+
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Avenir, sans-serif;
+}
+
+nav #movebar {
+    width: 100%;
+    margin: 0px auto 40px auto;
+    position: sticky;
+    top: 0px;
+    background-color: rgba(250, 250, 250, 0);
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+
+}
+
+nav li {
+    float: left;
+    width: 25%; /*100% divisé par le nombre d'éléments de menu*/
+    text-align: center; /*Centre le texte dans les éléments de menu*/
+}
+
+/*Evite que le menu n'ait une hauteur nulle*/
+nav ul::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav a.texte {
+    display: block; /*Toute la surface sera cliquable*/
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid transparent; /*Evite le décalage des éléments sous le menu à cause de la bordure en :hover*/
+    padding: 30px 0px; /*Agrandit le menu et espace la bordure du texte*/
+    font-size: 20px;
+}
+
+nav:hover {
+    color: black;
+}
+
+
+nav a.texte:hover {
+    color: orange;
+    border-bottom: 5px solid gold;
+    text-decoration: none;
+    font-size: 30px;
+    background-color: rgba(250, 250, 250, 0.5);
+    transition: background-color 0.4s ease-out;
+    padding: 22px 0px; /*Agrandit le menu et espace la bordure du texte*/
+}
+.page {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    top: 0;
+}
+/*------------------------------------------------------------------------------------------------------------------*/
+                                                      /*ANIMATION*/
+/*------------------------------------------------------------------------------------------------------------------*/
+
+.table{
+   width: 90%;
+   margin: 10% 5%;
+   background-color: orange;
+   float: left;
+}
+.presentation{
+   width: 95%;
+   background-color: yellow;
+   margin: 2.5%;
+
+}
+.statistique {
+   width: 65%;
+   background-color: green;
+   margin-bottom: 5%;
+}
+.box{
+   background-color: red;
+   margin-top: 5%;
+    width: calc(32px * var(--pixel-size)* 1.25);
+   height: calc(32px * var(--pixel-size)* 1.25);
+   border: 2px solid blue;
+   /*position: fixed;*/
+   align-content: center;
+   position: absolute;
+   bottom: 25%;
+   left: 67%;
+}
+.Character {
+   /* calc permet réaliser des calculs pour déterminer la valeu*/
+
+   /*largeur = 32px et on le zoom*/
+   width: calc(32px * var(--pixel-size));;
+   height: calc(32px * var(--pixel-size));
+   /* coupe les élément qui dépasse ducadre*/
+   overflow: hidden;
+   /* permet de décaler l'élément*/
+   position: relative;
+   margin: 3em auto;
+   background-color: green;
+   align-content: center;
+}
+
+
+.Character_spritesheet {
+   /* appel une fonction qui dure 1sec et qui boucle indéfiniment et qui coupe la largeur en 4 pour faire un pas apres k'autre*/
+   animation: moveSpritesheet 1s steps(4) infinite;
+   /* redimensionnement du personnage*/
+   width: calc(128px * var(--pixel-size));
+   position: absolute;
+   
+}
+.Character_shadow {
+   position: absolute;
+   width: calc(32px * var(--pixel-size));
+   height: calc(32px * var(--pixel-size));
+}
+
+.pixelart {
+   image-rendering: pixelated; /* aide le navigateur à proposer de l'algorithme qui devrait être utilisé pour redimensionner les images*/
+}
+
+/*-------------------------------------------------------------------------------------------------*/
+
+.face-right {
+   top: calc(-32px * var(--pixel-size));
+}
+.face-up {
+   top: calc(-64px * var(--pixel-size));
+}
+.face-left {
+   top: calc(-96px * var(--pixel-size));
+}
+/*-------------------------------------------------------------------------------------------------*/
+
+@keyframes moveSpritesheet {
+   /*permet de définir les étapes qui composent une animation*/
+   from {
+      /*point de départ de l'animation*/
+      transform: translate3d(0px,0,0)
+      /*permet de déplacer un élément dans l'espace tridimensionnel (x, y, z)*/
+   }
+   /*On peut mettre des x% pour des étape intermediaire ( attention l'on part de 0 à 100%)*/
+   to {
+      /*fin de l'animation */
+      transform: translate3d(-100%,0,0)
+   }
+}
